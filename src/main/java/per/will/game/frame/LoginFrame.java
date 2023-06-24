@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by 01467885 on 2020/6/19.
+ * Created by will on 2020/6/19.
  */
 public class LoginFrame extends JFrame implements ActionListener {
 
@@ -89,7 +89,9 @@ public class LoginFrame extends JFrame implements ActionListener {
         String password = passwordTextField.getText();
         if (userService.login(username, password)) {
             JOptionPane.showMessageDialog(null, "登录成功！");
-            //super.setVisible(false);
+            super.setVisible(false);
+            MouseFrame mouseFrame = new MouseFrame();
+            mouseFrame.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "用户名或密码错误！");
         }

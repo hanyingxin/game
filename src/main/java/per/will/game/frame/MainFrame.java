@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by 01467885 on 2020/6/19.
+ * Created by will on 2020/6/19.
  */
 public class MainFrame extends JFrame implements ActionListener {
 

@@ -1,7 +1,7 @@
 package per.will.game.service;
 
 /**
- * Created by 01467885 on 2020/6/19.
+ * Created by will on 2020/6/19.
  */
 public interface UserService {
 

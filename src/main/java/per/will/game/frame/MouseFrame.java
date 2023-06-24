@@ -1,5 +1,7 @@
 package per.will.game.frame;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -12,6 +14,7 @@ import java.util.Random;
  * 打地鼠页面
  * Created by will on 2020/7/27.
  */
+@Slf4j
 public class MouseFrame extends JFrame implements MouseListener {
 
     // 行，列，总数
@@ -49,6 +52,11 @@ public class MouseFrame extends JFrame implements MouseListener {
             }
         }
         // 地鼠刷新
+        new Thread(new MouseThread()).start();
+        new Thread(new MouseThread()).start();
+        new Thread(new MouseThread()).start();
+        new Thread(new MouseThread()).start();
+        new Thread(new MouseThread()).start();
         new Thread(new MouseThread()).start();
 
         this.setContentPane(mainPanel);
@@ -98,19 +106,18 @@ public class MouseFrame extends JFrame implements MouseListener {
         public void run() {
             while (true) {
                 // 生成随机位置
-                int num = new Random().nextInt(count);
-                // 此位置如果是空的才进行出现的动作，否则生成新位置
-                while (labelList.get(num).getIcon() != hole) {
+                int num;
+                do {
                     num = new Random().nextInt(count);
-                }
+                } while (labelList.get(num).getIcon() != hole); // 此位置如果是空的才进行出现的动作，否则生成新位置
                 // 地鼠出现的动作
                 try {
                     labelList.get(num).setIcon(mouse1);
                     Thread.sleep(100);
                     labelList.get(num).setIcon(mouse2);
-                    Thread.sleep(1500);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    log.error("[MouseThread.run] e:{}", e);
                 }
                 // 时间结束还是未点击的装态，设置为消失
                 if (labelList.get(num).getIcon() == mouse2) {
@@ -136,14 +143,13 @@ public class MouseFrame extends JFrame implements MouseListener {
             holeLabel.setIcon(hit);
             try {
                 Thread.sleep(800);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
+            } catch (InterruptedException e) {
+                log.error("[MouseDisThread.run] e:{}", e);
             } finally {
                 holeLabel.setIcon(hole);
             }
         }
     }
-
 }
 
 

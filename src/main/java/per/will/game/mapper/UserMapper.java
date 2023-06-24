@@ -1,25 +1,25 @@
 package per.will.game.mapper;
 
 
-import per.will.game.dto.UserDTO;
+import per.will.game.domain.dto.User;
 
 import java.util.List;
 
 /**
- * Created by 01467885 on 2020/6/19.
+ * Created by will on 2020/6/19.
  */
 public interface UserMapper {
 
-    public UserDTO getUserById(Integer id);
+    User getUserById(Integer id);
 
-    public UserDTO getUserByUserName(String userName);
+    User getUserByUserName(String userName);
 
-    public List<UserDTO> getUserList(UserDTO userParam);
+    List<User> getUserList(User userParam);
 
-    public Integer insertUser(UserDTO userParam);
+    Integer insertUser(User userParam);
 
-    public Integer updateUser(UserDTO userParam);
+    Integer updateUser(User userParam);
 
-    public Integer deleteUser(Integer id);
+    Integer deleteUser(Integer id);
 
 }

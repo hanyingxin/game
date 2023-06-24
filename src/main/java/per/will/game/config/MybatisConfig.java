@@ -1,4 +1,4 @@
-package per.will.game.util;
+package per.will.game.config;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -7,13 +7,13 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.InputStream;
 
 /**
- * Created by 01467885 on 2020/6/19.
+ * Created by will on 2020/6/19.
  */
-public class MyBatisUtil {
+public class MybatisConfig {
 
     private static SqlSessionFactory sqlSessionFactory = null;
 
-    private MyBatisUtil() {
+    private MybatisConfig() {
 
     }
 

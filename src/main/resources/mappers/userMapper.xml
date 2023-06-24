@@ -6,48 +6,49 @@
 <mapper namespace="per.will.game.mapper.UserMapper">
 
     <!--用户信息map-->
-    <resultMap id="user" type="per.will.game.dto.UserDTO">
+    <resultMap id="user" type="per.will.game.domain.dto.User">
         <id column="id" property="id"/>
-        <result column="user_name" property="userName"/>
     </resultMap>
 
     <!--通过id获取单个用户-->
     <select id="getUserById" parameterType="java.lang.Long" resultMap="user">
-        SELECT id,user_name,password,`name`,age FROM `user` WHERE id = #{id}
+        SELECT id, username, password, nickname
+        FROM `user`
+        WHERE id = #{id}
     </select>
 
     <!--通过用户名获取-->
     <select id="getUserByUserName" parameterType="java.lang.String" resultMap="user">
-        SELECT id,user_name,password,`name`,age FROM `user` WHERE user_name = #{userName}
+        SELECT id, username, password, nickname
+        FROM `user`
+        WHERE username = #{userName}
     </select>
 
     <!--获取用户列表-->
     <select id="getUserList" resultMap="user">
-        SELECT id,user_name,password,`name`,age FROM `user`
+        SELECT id, username, password, nickname
+        FROM `user`
     </select>
 
     <!--创建用户-->
-    <insert id="insertUser" parameterType="per.will.game.dto.UserDTO">
-        INSERT INTO `user`(user_name,password,`name`,age,create_time)
-        VALUES (#{userName},#{password},#{name},#{age},NOW())
+    <insert id="insertUser" parameterType="per.will.game.domain.dto.User">
+        INSERT INTO `user`(username, password, nickname, created)
+        VALUES (#{username}, #{password}, #{nickname}, NOW())
     </insert>
 
-    <update id="updateUser" parameterType="per.will.game.dto.UserDTO">
+    <update id="updateUser" parameterType="per.will.game.domain.dto.User">
         UPDATE `user`
         SET
         <if test="userName != null and userName != ''">
-            user_name=#{userName},
+            username=#{username},
         </if>
         <if test="password != null and password != ''">
             password=#{password},
         </if>
-        <if test="name != null and name != ''">
-            `name`=#{name},
+        <if test="nickname != null and nickname != ''">
+            nickname=#{nickname},
         </if>
-        <if test="age != null and age != ''">
-            age=#{age},
-        </if>
-        id = #{id}
+        updated = NOW()
         WHERE id = #{id}
     </update>
 

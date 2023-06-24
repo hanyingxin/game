@@ -3,14 +3,14 @@ package per.will.game.service.impl;
 import org.apache.ibatis.session.SqlSessionFactory;
 import per.will.game.mapper.UserMapper;
 import per.will.game.service.UserService;
-import per.will.game.util.MyBatisUtil;
+import per.will.game.config.MybatisConfig;
 
 /**
- * Created by 01467885 on 2020/6/19.
+ * Created by will on 2020/6/19.
  */
 public class UserServiceImpl implements UserService {
 
-    SqlSessionFactory sqlSessionFactory = MyBatisUtil.getSqlSessionFactory();
+    SqlSessionFactory sqlSessionFactory = MybatisConfig.getSqlSessionFactory();
     UserMapper userMapper = sqlSessionFactory.openSession().getMapper(UserMapper.class);
 
     @Override
